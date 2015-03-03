@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Product, :type => :model do
 
-  let(:product) {Product.create}
+  let(:product) {Product.create(name: 'product', price: 5.00, description: 'Product description')}
 
   describe 'name' do
 
@@ -13,7 +13,7 @@ RSpec.describe Product, :type => :model do
     it 'is unique' do
       beef_sausage = Product.create(name: "sausage")
       chicken_sausage = Product.create(name: "sausage")
-      expect(chicken_sausage).to be_nil
+      expect(Product.all.include?(chicken_sausage)).to be_falsy
     end
 
   end
@@ -26,7 +26,7 @@ RSpec.describe Product, :type => :model do
     end
 
     it 'is an integer' do
-      expect(product.price).to be_an(Integer)
+      expect(product.price).to be_a(Float)
     end
 
   end

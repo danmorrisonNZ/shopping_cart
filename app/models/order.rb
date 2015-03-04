@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   end
 
   def count_items
-    self.products.length
+    self.products.length.to_s
   end
 
   def format_price

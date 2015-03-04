@@ -43,13 +43,18 @@ RSpec.describe Order, :type => :model do
 
   describe 'item_count' do
 
+    let(:count) {@order.count_items}
+
     it 'exists' do
+      expect(@order.item_count).to_not be_nil
     end
 
     it 'produces the count as a string' do
+      expect(count).to be_a(String)
     end
 
     it 'is the sum of the number of items in an order' do
+      expect(@order.item_count).to eq(2)
     end
 
 

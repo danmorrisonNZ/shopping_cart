@@ -54,5 +54,50 @@ RSpec.describe OrdersController, :type => :controller do
    end
 
 
+   describe 'edit' do
+
+   let(:order) {double("Order", id: 1)}
+
+     before do
+       allow(Order).to receive(:find).with(1).and_return(order)
+       get :edit, id: order.id
+     end
+
+     it 'calls find on class Product' do
+       expect(Order).to receive(:find)
+     end
+
+     it 'finds the correct product' do
+       expect(assigns(:current_order)).to be(order)
+     end
+
+     it 'finds a single product' do
+       expect(Order).to receive(:find).with(order.id)
+     end
+
+     it 'returns a single product' do
+       expect(assigns(:order)).to be(order)
+     end
+
+     it 'renders the show view' do
+       expect(response).to render_template(:edit)
+     end
+
+     it 'gives a 200 ok status' do
+       expect(response).to have_http_status(200)
+     end
+
+   end
+
+
+   describe 'update' do
+
+     it ''
+
+   end
+
+
+   describe 'destroy' do
+   end
 
 end

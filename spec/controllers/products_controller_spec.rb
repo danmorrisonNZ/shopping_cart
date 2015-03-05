@@ -60,17 +60,22 @@ RSpec.describe ProductsController, :type => :controller do
 
    describe 'index' do
 
+     let(:product_double) {double("apple")}
+
      before do
        get :index
      end
 
      it 'returns all products' do
+       expect(Product).to receive(:all).and_return(product_double)
      end
 
      it 'gives a 200 ok status' do
+       expect(response).to have_http_status(200)
      end
 
-     it 'renders the correct route' do
+     it 'renders the index view' do
+       expect(response).to render_template(:index)
      end
 
 
@@ -79,23 +84,27 @@ RSpec.describe ProductsController, :type => :controller do
 
    describe 'show' do
 
-    let(:product) { Product.create(id: 1, name: "Bananna", price: 1.10) }
+    let(:product_double) {double("bananna", id: 1)}
 
      before do
-       get :show, id: product.id
+       allow(Product).to receive(:find).with(product_double.id).and_return(product_double)
+       get :show, id: product_double.id
      end
 
-
      it 'finds a single product' do
+       expect(Product).to receive(:find).with(product_double.id)
      end
 
      it 'returns a single product' do
+       expect(assigns(:product)).to be(product_double)
      end
 
-     it 'renders the correct route' do
+     it 'renders the show view' do
+       expect(response).to render_template(:show)
      end
 
      it 'gives a 200 ok status' do
+       expect(response).to have_http_status(200)
      end
 
    end

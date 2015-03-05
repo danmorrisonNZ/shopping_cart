@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     if !user_signed_in?
       redirect '/users/sign_in'
     end
-    
+
   end
 
 end

@@ -2,70 +2,104 @@ require "rails_helper"
 
 RSpec.describe ProductsController, :type => :controller do
 
- let(:product_double) { double("product_double")}
+ # let(:product_double) { double("product_double")}
+ #
+ #   describe 'new' do
+ #
+ #     before do
+ #       allow(Product).to receive(:new).and_return(product_double)
+ #       get :new
+ #     end
+ #
+ #     it 'creates a new product' do
+ #       expect(assigns(:product)).to be(product_double)
+ #     end
+ #
+ #   end
+ #
+ #
+ #   describe 'create' do
+ #
+ #     before do
+ #       allow(Product).to receive(:create).and_return(product_double)
+ #       allow(product_double).to receive(:save).and_return(true)
+ #     end
+ #
+ #     it 'creates a new product' do
+ #       post :create
+ #       expect(assigns(:product)).to be(product_double)
+ #     end
+ #
+ #     it 'redirects to the correct url' do
+ #       post :create
+ #       expect(response).to redirect_to root_url
+ #     end
+ #
+ #   end
+ #
+ #
+ #   describe 'edit' do
+ #
+ #     let(:product) {double("Product", id: 1)}
+ #
+ #     before do
+ #       allow(Product).to receive(:find).with(1).and_return(product)
+ #       get :edit, id: product.id
+ #     end
+ #
+ #     it 'calls find on class Product' do
+ #       expect(Product).to receive(:find)
+ #     end
+ #
+ #     it 'finds the correct product' do
+ #       expect(assigns(:current_product)).to be(product)
+ #     end
+ #
+ #   end
 
-   describe 'new' do
+
+   describe 'index' do
 
      before do
-       allow(Product).to receive(:new).and_return(product_double)
-       get :new
+       get :index
      end
 
-     it 'creates a new product' do
-       expect(assigns(:product)).to be(product_double)
+     it 'returns all products' do
      end
+
+     it 'gives a 200 ok status' do
+     end
+
+     it 'renders the correct route' do
+     end
+
 
    end
 
-   describe 'create' do
+
+   describe 'show' do
+
+    let(:product) { Product.create(id: 1, name: "Bananna", price: 1.10) }
 
      before do
-       allow(Product).to receive(:create).and_return(product_double)
-       allow(product_double).to receive(:save).and_return(true)
-     end
-
-     it 'creates a new product' do
-       post :create
-       expect(assigns(:product)).to be(product_double)
-     end
-
-     it 'redirects to the correct url' do
-       post :create
-       expect(response).to redircet_to root_url
-     end
-
-   end
-
-   describe 'edit' do
-
-     let(:product) {double("Product", id: 1)}
-
-     before do
-       allow(Product).to receive(:find).with(1).and_return(product)
-       get :edit, id: product.id
-     end
-
-     it 'finds the correct product' do
-       expect(assigns(:current_product)).to be(product)
-     end
-
-     it 'displays the correct fields for editing' do
+       get :show, id: product.id
      end
 
 
-     it 'redirects to the products url after editing' do
+     it 'finds a single product' do
      end
 
+     it 'returns a single product' do
+     end
 
-   end
+     it 'renders the correct route' do
+     end
 
-
-   describe 'delete' do
-
-     it 'deletes the correct product from the database' do
+     it 'gives a 200 ok status' do
      end
 
    end
+
 
 
 end
